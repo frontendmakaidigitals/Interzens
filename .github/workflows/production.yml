@@ -33,7 +33,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Install SSH Key with Passphrase
+      - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
@@ -54,7 +54,7 @@ jobs:
 
       - name: Deploy and run with PM2
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ~/interzens &&
             npm ci --omit=dev &&
             npm install -g pm2 next &&
