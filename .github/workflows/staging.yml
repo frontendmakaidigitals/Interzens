@@ -2,7 +2,7 @@ name: Deploy Next.js App - Production
 on:
   push:
     branches:
-      - staging
+      - main
 jobs:
   build-and-deploy:
     name: Build and Deploy to Production
@@ -35,9 +35,11 @@ jobs:
 
       - name: Install SSH Key with Passphrase
         run: |
+          mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent -s)
+          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
         env:
           SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
 
