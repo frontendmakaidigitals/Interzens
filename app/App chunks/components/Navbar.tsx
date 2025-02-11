@@ -36,7 +36,7 @@ const NavBar = () => {
          source={
           path !== "/Blogs" && path !== "/Blog" ? "/Logo.png" : "/Logo.png"
         }
-          className="w-[160px] lg:!w-[230px]"
+          className="w-[110px] lg:!w-[230px]"
         />
       </motion.div>
       <motion.div
