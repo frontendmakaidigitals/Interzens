@@ -56,7 +56,7 @@ jobs:
             npm install -g pm2 next &&
             npm i sharp &&
             pm2 delete interzens || true &&
-            pm2 start npm --name 'interzens' -- start &&
+            pm2 start npm --name 'interzens' -- start --cwd ~/interzens &&
             pm2 save &&
             pm2 list | grep -q 'interzens.*online' && echo 'App started successfully' || (pm2 logs interzens --lines 50 && exit 1)
           "
