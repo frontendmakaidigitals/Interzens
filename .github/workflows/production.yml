@@ -45,13 +45,12 @@ jobs:
 
       - name: Debug SSH connection
         run: |
-          ssh -v ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'SSH connection successful'"
-
-      - name: Deploy with rsync
-        run: |
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" --delete -v .next/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/interzens/.next/
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" -v package.json package-lock.json next.config.js ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/interzens/
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" -v public/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/interzens/public/
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent -s)
+          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+          ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'SSH connection successful'"
 
       - name: Deploy and run with PM2
         run: |
