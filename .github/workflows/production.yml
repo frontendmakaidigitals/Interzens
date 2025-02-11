@@ -33,15 +33,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Setup SSH Key
+      - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          eval $(ssh-agent -s)
-          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
-        env:
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
 
       - name: Debug SSH connection
         run: |
@@ -54,7 +50,7 @@ jobs:
 
       - name: Deploy and run with PM2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ~/interzens &&
             npm ci --omit=dev &&
             npm install -g pm2 next &&
