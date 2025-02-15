@@ -212,7 +212,7 @@ const AboutUs = () => {
                 className="w-full h-full absolute z-[10] top-0 left-0 bg-purple-100"
               />
               <motion.img
-                src="/about us image.png"
+                src="/AboutUs.png"
                 alt="Image"
                 className="w-full h-full object-cover"
                 style={{ translateY: springY, scale: 1.1 }}
