@@ -207,11 +207,11 @@ const Slider = () => {
                       >
                         <AuroraBackground>
                           <div className="relative px-5 py-6">
-                            <h2 className="font-Grostek text-slate-950 text-start text-2xl lg:text-3xl font-[600]">
+                            <h2 className="font-Grostek text-slate-950 text-start text-lg lg:text-xl xl:text-2xl  font-[600]">
                               {image.name}
                             </h2>
-                            <motion.div className=" mt-2">
-                              <p className="font-[300] font-Synonym text-black text-lg lg:text-xl">
+                            <motion.div className=" mt-1">
+                              <p className="font-[300] font-Synonym text-black text-lg lg:text-sm xl:text-xl">
                                 {image.text}
                               </p>
                             </motion.div>

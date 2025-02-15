@@ -12,7 +12,7 @@ const reviews = [
     img: "Logo/craft-desk.png",
   },
   {
-    img: "Logo/interzens.png",
+    img: "Logo/InsightVision.png",
   },
   {
     img: "Logo/menlocloud.png",
