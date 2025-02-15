@@ -184,19 +184,18 @@ const Page = () => {
                 marketing that empowers brands to exist in an ever-evolving
                 world. We aspire to create meaningful connections between
                 businesses and their audiences through innovative strategies,
-                authentic storytelling, and measurable impact 
+                authentic storytelling, and measurable impact
               </p>
             </div>
             <div className="">
               <h3 className="font-Grostek text-3xl font-[400]">Our Mission</h3>
               <p className="mt-1 text-lg">
-                Our mission at Interzen is to empower businesses to reach
-                their full potential through innovative marketing solutions that
+                Our mission at Interzens is to empower businesses to reach their
+                full potential through innovative marketing solutions that
                 deliver measurable results. We are committed to understanding
                 the unique needs of every client, creating tailored strategies
                 that amplify their voice, connect with their audience, and drive
                 sustainable growth.
-               
               </p>
             </div>
           </div>
@@ -226,9 +225,9 @@ const Page = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 my-10">
             <div>
               <p className="text-[1.4rem] font-Satoshi">
-                At Interzen, every brand has a unique story waiting to be
-                told. Founded on passion, creativity, and a deep understanding
-                of marketing trends, we specialize in delivering solutions that
+                At Interzens, every brand has a unique story waiting to be told.
+                Founded on passion, creativity, and a deep understanding of
+                marketing trends, we specialize in delivering solutions that
                 gives measurable results. Our mission is simple: to help you
                 grow, connect, and stand out in a crowded marketplace.{" "}
               </p>
@@ -316,10 +315,10 @@ const Page = () => {
               Let’s Grow Together
             </h2>
             <p className="mt-3 font-Synonym font-[400] text-lg">
-              At Interzen, we don’t just market products—we build
-              connections that last. Whether you’re a startup looking to make a
-              big growth or an established brand seeking to level up, we’re here
-              to help you achieve your goals.
+              At Interzens, we don’t just market products—we build connections
+              that last. Whether you’re a startup looking to make a big growth
+              or an established brand seeking to level up, we’re here to help
+              you achieve your goals.
             </p>
             <p className="mt-3 font-Synonym font-[400] text-lg">
               Get in touch today and let’s turn your vision into reality.

@@ -1,20 +1,16 @@
 // This is the layout for the contact page
 export const metadata = {
-    title: 'Media Buying | Maximize ROI with Interzens’s Ad Strategies',
-    description: 'Get the best ad placements at the right price with Interzens’s media buying services. We optimize campaigns to ensure maximum reach, engagement, and ROI.',
-  };
-  
-  import { ReactNode } from 'react';
+  title: "Media Buying | Maximize ROI with Interzens’s Ad Strategies",
+  description:
+    "Get the best ad placements at the right price with Interzens’s media buying services. We optimize campaigns to ensure maximum reach, engagement, and ROI.",
+};
 
-  interface ContactLayoutProps {
-    children: ReactNode;
-  }
+import { ReactNode } from "react";
 
-  export default function MediaBuying({ children }: ContactLayoutProps) {
-    return (
-      <>
-       {children}
-      </>
-    );
-  }
-  
+interface ContactLayoutProps {
+  children: ReactNode;
+}
+
+export default function MediaBuying({ children }: ContactLayoutProps) {
+  return <>{children}</>;
+}

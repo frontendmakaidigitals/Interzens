@@ -9,7 +9,7 @@ import Loading from "./App chunks/components/Loader";
 export const metadata: Metadata = {
   title: " Interzens | Result-Driven Marketing Agency in Dubai",
   description:
-    "Elevate your brand with Interzen, a data-driven marketing agency specializing in SEO, PPC, social media, and content marketing. Get measurable results today!",
+    "Elevate your brand with Interzens, a data-driven marketing agency specializing in SEO, PPC, social media, and content marketing. Get measurable results today!",
 };
 
 export default function RootLayout({

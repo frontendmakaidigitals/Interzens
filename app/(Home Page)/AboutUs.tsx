@@ -15,7 +15,7 @@ const AboutUs = () => {
   const body = useRef(null);
   const refs = useRef<(HTMLSpanElement | null)[]>([]); // To store refs for each span
   const [viewportWidth, setViewportWidth] = React.useState<number>(0);
-  const para1 = `We’re more than just a marketing agency. At Interzen, we’re your growth partners. With a deep understanding of digital landscapes, creative strategies, and technology, we specialize in turning ideas into results.`;
+  const para1 = `We’re more than just a marketing agency. At Interzens, we’re your growth partners. With a deep understanding of digital landscapes, creative strategies, and technology, we specialize in turning ideas into results.`;
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== "undefined") {

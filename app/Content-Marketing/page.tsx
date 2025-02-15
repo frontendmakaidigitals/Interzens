@@ -415,10 +415,11 @@ const Page = () => {
                 We would like to chat with you.
               </h3>
               <div className="mt-3">
-                <Link href={'/'}>
-                <button className="text-slate-950 px-5 rounded-full font-Grostek font-[500] py-2 bg-slate-200 hover:bg-slate-100">
-                  Contact us
-                </button></Link>
+                <Link href={"/contact"}>
+                  <button className="text-slate-950 px-5 rounded-full font-Grostek font-[500] py-2 bg-slate-200 hover:bg-slate-100">
+                    Contact us
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="mt-5">

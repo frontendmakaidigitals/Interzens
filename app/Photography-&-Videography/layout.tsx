@@ -1,20 +1,17 @@
 // This is the layout for the contact page
 export const metadata = {
-    title: 'Photography & Videography | Capture Your Brand’s Story with Interzens',
-    description: 'Bring your brand to life with Interzens’s professional photography and videography services. We create stunning visuals that tell your story and engage your audience.',
-  };
-  
-  import { ReactNode } from 'react';
+  title:
+    "Photography & Videography | Capture Your Brand’s Story with Interzens",
+  description:
+    "Bring your brand to life with Interzens’s professional photography and videography services. We create stunning visuals that tell your story and engage your audience.",
+};
 
-  interface ContactLayoutProps {
-    children: ReactNode;
-  }
+import { ReactNode } from "react";
 
-  export default function Photography({ children }: ContactLayoutProps) {
-    return (
-      <>
-       {children}
-      </>
-    );
-  }
-  
+interface ContactLayoutProps {
+  children: ReactNode;
+}
+
+export default function Photography({ children }: ContactLayoutProps) {
+  return <>{children}</>;
+}
