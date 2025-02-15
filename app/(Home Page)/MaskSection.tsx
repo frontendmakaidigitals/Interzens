@@ -75,7 +75,7 @@ export default function MaskSection() {
           <div className="relative h-screen w-screen">
             <video ref={videoRef} className="object-cover" autoPlay muted loop>
               <source
-                src="https://github.com/frontendmakaidigitals/InsightVision/raw/refs/heads/master/public/media/ISVWebsite.mp4"
+                src="https://github.com/frontendmakaidigitals/InsightVision/raw/refs/heads/master/public/Interzens%20Website.mp4"
                 type="video/mp4"
               />
             </video>
