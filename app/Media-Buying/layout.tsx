@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Media Buying | Maximize ROI with Interzens’s Ad Strategies",
+  title: "Data-Driven Media Buying Services | Interzens",
   description:
-    "Get the best ad placements at the right price with Interzens’s media buying services. We optimize campaigns to ensure maximum reach, engagement, and ROI.",
+    "Maximize your ad spend with Interzens’ expert media buying services in India. We strategize and optimize campaigns across digital and traditional platforms to ensure high ROI and brand growth. Get in touch today!",
 };
 
 import { ReactNode } from "react";

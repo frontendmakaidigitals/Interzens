@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Public Relations | Build Your Brand Reputation with Interzens",
+  title: "Expert Public Relations Services in India | Interzens",
   description:
-    "Strengthen your brand`s presence with Interzens`s public relations expertise. Our strategic PR services help shape your narrative, build media relationships, and boost brand visibility.",
+    " Enhance your brand’s reputation with Interzens’ professional public relations services. We specialize in media relations, crisis management, and brand storytelling to build trust and credibility. Let’s shape your brand’s narrative today!",
 };
 
 import { ReactNode } from "react";

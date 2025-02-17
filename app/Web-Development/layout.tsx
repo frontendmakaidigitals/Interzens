@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: " Web Development | Custom Websites & Scalable Solutions – Interzens",
+  title: "Expert Web Development Services | Interzens",
   description:
-    "Build a fast, responsive, and scalable website with Interzens. Our expert web development team creates custom solutions to elevate your online presence.",
+    "nterzens provides top-tier web development services in India, crafting responsive, SEO-friendly, and high-performance websites. From custom designs to eCommerce solutions, we build websites that drive success. Get started today!",
 };
 
 import { ReactNode } from "react";

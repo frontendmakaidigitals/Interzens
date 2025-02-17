@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: " App Development | Custom Mobile & Web Apps by Interzens",
+  title: " Custom App Development Services | Interzens",
   description:
-    "Transform your ideas into powerful mobile and web apps with Interzens. We design and develop custom, high-performance applications according to your business needs.",
+    "Interzens offers top-notch app development services in India, specializing in Android, iOS, and cross-platform solutions. Build high-performance, user-friendly apps customized to your business needs. Get a free consultation today!",
 };
 
 import { ReactNode } from "react";

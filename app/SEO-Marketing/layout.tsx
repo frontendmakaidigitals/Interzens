@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "SEO Marketing | Rank Higher & Drive Traffic with Interzens",
+  title: " Result-Oriented SEO Marketing Services | Interzens",
   description:
-    "Increase your online visibility with Interzens’s expert SEO marketing services. We optimize your website to boost rankings, traffic, and conversions.",
+    " Boost your online visibility with Interzens' expert SEO marketing services in India. We specialize in on-page & off-page SEO, keyword optimization, and link building to drive organic traffic and higher rankings. Get started today!",
 };
 
 import { ReactNode } from "react";

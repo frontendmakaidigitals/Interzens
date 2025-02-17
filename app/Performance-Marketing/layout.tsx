@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: " Performance Marketing | Drive Results with Interzens",
+  title: "High-Impact Performance Marketing Services | Interzens",
   description:
-    " Achieve measurable growth with Interzens’s performance marketing services. We create data-driven strategies that focus on optimizing conversions, leads, and ROI.",
+    " Drive measurable results with Interzens’ performance marketing services in India. Our expert strategies focus on PPC, paid media, and conversion optimization to boost ROI and accelerate business growth. Start seeing results today!",
 };
 
 import { ReactNode } from "react";

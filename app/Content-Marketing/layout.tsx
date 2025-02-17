@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Content Marketing | Engage & Convert Your Channels with Interzens",
+  title: "Strategic Content Marketing Services | Interzens",
   description:
-    "Elevate your brand with Interzens’s content marketing services. We create compelling, SEO-optimized content that drives traffic, engagement, and conversions. We create content for each platform in different formats.  ",
+    "Interzens offers expert content marketing services in India, creating high-quality blogs, articles, and copy that engage audiences and boost SEO. Drive traffic and conversions with our tailored content strategies!",
 };
 
 import { ReactNode } from "react";

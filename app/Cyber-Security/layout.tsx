@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Cyber Security | Protect Your Business with Cyber Crimes",
+  title: "Trusted Cyber Security Services | Interzens",
   description:
-    "Safeguard your digital assets with Interzens’s comprehensive cyber security services. We offer proactive solutions to protect your business from threats and vulnerabilities.",
+    " Protect your business with Interzens' top-notch cyber security services. We offer comprehensive solutions including risk assessment, threat prevention, and data protection to safeguard your digital assets. Secure your business today!",
 };
 
 import { ReactNode } from "react";

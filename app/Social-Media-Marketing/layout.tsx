@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Social Media Marketing | Grow Your Brand with Interzens",
+  title: "Result-Driven Social Media Marketing Services  | Interzens",
   description:
-    "Boost engagement and drive results with Interzens’s social media marketing services. We create strategies for impactful brand growth. We have experts handling all the platforms. ",
+    "Grow your brand with Interzens' expert social media marketing services in India. We specialize in strategy, content creation, and paid campaigns to boost engagement and sales. Elevate your social presence today!",
 };
 
 import { ReactNode } from "react";

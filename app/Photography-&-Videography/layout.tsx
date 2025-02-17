@@ -1,9 +1,9 @@
 // This is the layout for the contact page
 export const metadata = {
   title:
-    "Photography & Videography | Capture Your Brand’s Story with Interzens",
+    "Professional Photography & Videography Services | Interzens",
   description:
-    "Bring your brand to life with Interzens’s professional photography and videography services. We create stunning visuals that tell your story and engage your audience.",
+    "Capture stunning visuals with Interzens’ expert photography and videography services. We specialize in high-quality content for brands, events, product shoots, and more to elevate your marketing. Let’s create powerful visuals together!",
 };
 
 import { ReactNode } from "react";

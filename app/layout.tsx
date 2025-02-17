@@ -7,9 +7,9 @@ import Footer from "./App chunks/components/Footer";
 import Template from "./Template";
 import Loading from "./App chunks/components/Loader";
 export const metadata: Metadata = {
-  title: " Interzens | Result-Driven Marketing Agency in Dubai",
+  title: "Interzens |  India’s Premier Digital Marketing Agency",
   description:
-    "Elevate your brand with Interzens, a data-driven marketing agency specializing in SEO, PPC, social media, and content marketing. Get measurable results today!",
+    "Interzens is a top digital marketing agency in India, specializing in SEO, PPC, social media marketing, and branding. Boost your online presence with our expert solutions. Get a free consultation today!",
 };
 
 export default function RootLayout({

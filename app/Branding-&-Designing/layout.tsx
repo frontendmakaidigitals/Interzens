@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "Branding & Designing | Create a Strong Identity with Interzens",
+  title: "Creative Branding and Designing Services | Interzens",
   description:
-    "Craft a memorable brand with Interzens’s branding and design services. We create visually stunning logos, designs, and strategies that resonate with your target audience.",
+    " Elevate your brand with Interzens’ expert branding and design services. From logo creation to complete brand identity, we craft visually compelling designs that resonate with your audience and enhance brand recognition. Start your branding journey today!",
 };
 
 import { ReactNode } from "react";

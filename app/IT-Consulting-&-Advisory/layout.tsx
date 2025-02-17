@@ -1,8 +1,8 @@
 // This is the layout for the contact page
 export const metadata = {
-  title: "IT Consulting & Advisory | Expert Solutions by Interzens",
+  title: "Expert IT Consulting & Advisory Services | Interzens",
   description:
-    "Optimize your technology strategy with Interzens’s IT consulting and advisory services. Our experts provide tailored solutions to improve efficiency, security, and growth.",
+    "Unlock your business potential with Interzens' IT consulting and advisory services in India. We provide tailored solutions in technology strategy, digital transformation, and system integration to help your business thrive. Get expert advice today!",
 };
 
 import { ReactNode } from "react";
