@@ -246,7 +246,7 @@ const Page = () => {
                             />
                           </div>
                           <p className="font-Synonym font-[500]">
-                            Discover the capabilities and get answer to you
+                            Discover the capabilities and get answer to your
                             questions.
                           </p>
                         </motion.div>
