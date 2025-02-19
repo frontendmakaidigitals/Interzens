@@ -2,20 +2,12 @@ name: Deploy Next.js App - Production
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   build-and-deploy:
     name: Build and Deploy to Production
     runs-on: ubuntu-latest
     steps:
-      - name: Debug SSH connection
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          eval $(ssh-agent -s)
-          ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'SSH connection successful'"
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
@@ -57,12 +49,49 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ~/interzens &&
-            npm ci --omit=dev &&
-            npm install -g pm2 next &&
-            npm i sharp &&
-            lsof -i :3000 | awk 'NR!=1 {print $2}' | xargs -r kill -9 || true &&
+            # Create a script to handle process management
+            echo '#!/bin/bash
+            
+            # Function to find and kill process by port
+            kill_port_process() {
+                PORT=$1
+                PID=$(sudo lsof -t -i:$PORT)
+                if [ ! -z \"$PID\" ]; then
+                    echo \"Killing process $PID using port $PORT\"
+                    sudo kill -9 $PID
+                fi
+            }
+            
+            # Kill process using the specified port
+            kill_port_process 3000
+            ' > manage_process.sh &&
+            
+            # Make the script executable
+            chmod +x manage_process.sh &&
+            
+            # Run the process management script with sudo
+            sudo ./manage_process.sh &&
+            
+            # Stop PM2 process if it exists
             pm2 delete interzens || true &&
+            
+            # Install global dependencies with sudo
+            sudo npm install -g pm2 next &&
+            
+            # Install project dependencies
+            npm ci --omit=dev &&
+            npm i sharp &&
+            
+            # Set proper ownership
+            sudo chown -R $USER:$USER ~/interzens &&
+            
+            # Start the application with PM2
             pm2 start npm --name 'interzens' -- start -- --port 3000 &&
             pm2 save &&
+            
+            # Clean up
+            rm manage_process.sh &&
+            
+            # Check if the app started successfully
             pm2 list | grep -q 'interzens.*online' && echo 'App started successfully' || (pm2 logs interzens --lines 50 && exit 1)
           "
