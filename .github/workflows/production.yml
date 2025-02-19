@@ -53,8 +53,8 @@ jobs:
             # Stop and delete existing PM2 process if it exists
             pm2 delete interzens || true
             
-            # Check if port 3002 is in use and kill the process
-            PORT=3002
+            # Check if port 3001 is in use and kill the process
+            PORT=3001
             PID=\$(lsof -t -i:\$PORT) || true
             [ ! -z \"\$PID\" ] && kill -9 \$PID || true
             
