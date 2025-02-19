@@ -49,49 +49,27 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
             cd ~/interzens &&
-            # Create a script to handle process management
-            echo '#!/bin/bash
             
-            # Function to find and kill process by port
-            kill_port_process() {
-                PORT=$1
-                PID=$(sudo lsof -t -i:$PORT)
-                if [ ! -z \"$PID\" ]; then
-                    echo \"Killing process $PID using port $PORT\"
-                    sudo kill -9 $PID
-                fi
-            }
+            # Stop and delete existing PM2 process if it exists
+            pm2 delete interzens || true
             
-            # Kill process using the specified port
-            kill_port_process 3001
-            ' > manage_process.sh &&
+            # Check if port 3002 is in use and kill the process
+            PORT=3002
+            PID=\$(lsof -t -i:\$PORT) || true
+            [ ! -z \"\$PID\" ] && kill -9 \$PID || true
             
-            # Make the script executable
-            chmod +x manage_process.sh &&
-            
-            # Run the process management script with sudo
-            sudo ./manage_process.sh &&
-            
-            # Stop PM2 process if it exists
-            pm2 delete interzens || true &&
-            
-            # Install global dependencies with sudo
-            sudo npm install -g pm2 next &&
-            
-            # Install project dependencies
+            # Install dependencies
             npm ci --omit=dev &&
             npm i sharp &&
             
-            # Set proper ownership
-            sudo chown -R $USER:$USER ~/interzens &&
-            
             # Start the application with PM2
-            pm2 start npm --name 'interzens' -- start --env production --PORT 3001
-            pm2 save &&
+            pm2 start npm --name interzens -- start
             
-            # Clean up
-            rm manage_process.sh &&
+            # Enable timestamp logging and save the PM2 process
+            pm2 save
+            pm2 set pm2:logs:timestamp true
             
-            # Check if the app started successfully
+            # Verify app is running
+            sleep 5
             pm2 list | grep -q 'interzens.*online' && echo 'App started successfully' || (pm2 logs interzens --lines 50 && exit 1)
           "
