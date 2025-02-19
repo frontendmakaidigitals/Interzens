@@ -60,6 +60,7 @@ jobs:
             npm ci --omit=dev &&
             npm install -g pm2 next &&
             npm i sharp &&
+            lsof -i :3000 | awk 'NR!=1 {print $2}' | xargs -r kill -9 || true &&
             pm2 delete interzens || true &&
             pm2 start npm --name 'interzens' -- start -- --port 3000 &&
             pm2 save &&
