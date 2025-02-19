@@ -63,7 +63,7 @@ jobs:
             }
             
             # Kill process using the specified port
-            kill_port_process 3000
+            kill_port_process 3001
             ' > manage_process.sh &&
             
             # Make the script executable
@@ -86,7 +86,7 @@ jobs:
             sudo chown -R $USER:$USER ~/interzens &&
             
             # Start the application with PM2
-            pm2 start npm --name 'interzens' -- start -- --port 3000 &&
+            pm2 start npm --name 'insightvision' -- start --env production --PORT 3001
             pm2 save &&
             
             # Clean up
