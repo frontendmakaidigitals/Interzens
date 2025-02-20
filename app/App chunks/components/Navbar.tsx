@@ -50,12 +50,12 @@ const NavBar = () => {
       <motion.div
         initial={{ y: -200 }}
         animate={{ y: 0 }}
-        className="hidden lg:block"
+        className="hidden lg:flex lg:!w-[230px] justify-end"
         transition={{
           delay: 0.2,
           type: "linear",
           ease: "easeInOut",
-          duration: 1,
+          duration: 1,  
         }}
       >
         <Link href={"/contact"} className="hidden lg:block">
