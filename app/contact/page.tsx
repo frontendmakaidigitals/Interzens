@@ -5,10 +5,7 @@ import BreadCrumb from "../App chunks/components/BreadCrumb";
 import Head from "next/head";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import {
-  FacebookLogo,
-  InstagramLogo,
   SealCheck,
-  LinkedinLogo,
 } from "@phosphor-icons/react";
 import Button from "../App chunks/components/Button";
 import emailjs from "@emailjs/browser";

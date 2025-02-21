@@ -4,10 +4,9 @@ import Logo from "./Logo";
 import Ribbon from "./Ribbon";
 import { motion, useInView } from "framer-motion";
 import {
-  FacebookLogo,
-  InstagramLogo,
+  
   Circle,
-  LinkedinLogo,
+   
   ArrowUpRight,
 } from "@phosphor-icons/react";
 import Link from "next/link";
@@ -27,20 +26,7 @@ const Footer = () => {
     { title: "Terms & Conditions", link: "/" },
     { title: "Cookie policy", link: "/" },
   ];
-  const socialIcons = [
-    {
-      icon: <FacebookLogo />,
-      link: "https://www.facebook.com/share/1B8MhGwsoX/?mibextid=wwXIfr",
-    },
-    {
-      icon: <InstagramLogo />,
-      link: "https://www.instagram.com/insightvision.marketing?igsh=enp5bGcxc255MmJr",
-    },
-    {
-      icon: <LinkedinLogo />,
-      link: "https://www.linkedin.com/company/insight-vision-marketing/",
-    },
-  ];
+  
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
