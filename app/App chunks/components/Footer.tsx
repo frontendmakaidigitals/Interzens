@@ -66,28 +66,6 @@ const Footer = () => {
           >
             We create possibilities for the connected world.
           </motion.p>
-
-          <motion.div className="w-full grid grid-cols-4 gap-3 mt-8 lg:mt-12">
-            {socialIcons.map((elem, index) => (
-              <motion.div
-                key={index}
-                animate={{ y: inView ? 0 : 100 }}
-                transition={{
-                  delay: index * 0.1,
-                  ease: [0.22, 0.61, 0.36, 1],
-                  duration: 0.7,
-                }}
-                className="group overflow-hidden grid grid-cols-1 place-items-center text-4xl text-slate-50 size-12 lg:size-14 rounded-full bg-slate-100/10 border border-gray-800"
-              >
-                <Link
-                  className="group-hover:scale-[1.2] transition-all duration-300"
-                  href={elem.link}
-                >
-                  {elem.icon}
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
 
         <div className="grid grid-cols-2 gap-5 lg:grid-cols-4 w-full lg:gap-5 ">

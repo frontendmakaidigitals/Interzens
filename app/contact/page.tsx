@@ -251,43 +251,7 @@ const Page = () => {
                           </p>
                         </motion.div>
                       </div>
-                      <div className="mt-5">
-                        <h4 className="font-Grostek text-xl mt-5 font-bold ">
-                          Stay Connected with us
-                        </h4>
-                        <div className="flex text-3xl mt-1 justify-start items-center gap-5">
-                          <Link
-                            href={
-                              "https://www.facebook.com/share/1B8MhGwsoX/?mibextid=wwXIfr"
-                            }
-                          >
-                            <FacebookLogo
-                              weight="fill"
-                              className="hover:scale-[1.3] transition-all duration-300 cursor-pointer"
-                            />
-                          </Link>
-                          <Link
-                            href={
-                              "https://www.instagram.com/insightvision.marketing?igsh=enp5bGcxc255MmJr"
-                            }
-                          >
-                            <InstagramLogo
-                              weight="fill"
-                              className="hover:scale-[1.3] transition-all duration-300 cursor-pointer"
-                            />
-                          </Link>
-                          <Link
-                            href={
-                              "https://www.linkedin.com/company/insight-vision-marketing"
-                            }
-                          >
-                            <LinkedinLogo
-                              weight="fill"
-                              className="hover:scale-[1.3] transition-all duration-300 cursor-pointer"
-                            />
-                          </Link>
-                        </div>
-                      </div>
+                       
                     </div>
                     <form onSubmit={handleSubmit}>
                       <motion.div className="w-full p-5 grid rounded-lg grid-cols-1 gap-4 bg-white/60 ">
