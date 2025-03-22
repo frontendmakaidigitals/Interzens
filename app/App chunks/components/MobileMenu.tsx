@@ -156,10 +156,10 @@ const MobileMenu = ({}) => {
                     <Accordion defaultValue="services" multiple>
                       <AccordionItem value="services">
                         {/* Accordion Header for "Services" */}
-                        <AccordionHeader className="px-0 py-0">
+                        <AccordionHeader className="!px-0 !py-1">
                           <motion.p
                             variants={{
-                              hidden: { opacity: 0, y: 700 },
+                              hidden: { opacity: 0, y: 100 },
                               visible: { opacity: 1, y: 0 },
                             }}
                             transition={{
@@ -200,7 +200,7 @@ const MobileMenu = ({}) => {
                     >
                       <motion.p
                         variants={{
-                          hidden: { opacity: 0, y: 700 },
+                          hidden: { opacity: 0, y: 100 },
                           visible: { opacity: 1, y: 0 },
                         }}
                         transition={{
