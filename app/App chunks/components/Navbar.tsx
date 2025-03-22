@@ -30,7 +30,7 @@ const NavBar = () => {
           ease: "easeInOut",
           duration: 1,
         }}
-        className=" relative z-10"
+        className=" relative z-[9999999]"
       >
         <Logo
          source={

@@ -79,7 +79,7 @@ const MobileMenu = ({}) => {
               delay: 0.1,
               ease: [0.79, 0.14, 0.15, 0.86],
             }}
-            className="w-full h-screen fixed top-0 right-0 bg-black"
+            className="w-full h-screen fixed top-0 right-0 z-40 bg-black"
           >
             <motion.div
               initial={{
@@ -240,7 +240,7 @@ const Icon: React.FC<IconProps> = ({ setIsOpen, isOpen, path }) => {
   return (
     <button
       onClick={() => setIsOpen(!isOpen)}
-      className="size-10 relative z-10 rounded-full"
+      className="size-10 relative z-[99999] rounded-full"
     >
       <div className="flex hover flex-col justify-center items-center transition-all gap-1">
         <motion.div
