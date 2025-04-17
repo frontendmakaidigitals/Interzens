@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import BreadCrumb from "../App chunks/components/BreadCrumb";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
@@ -17,30 +17,19 @@ const Page = () => {
     setHeight(rect.height);
   }, []);
 
-  const fileNames = [
-    "1.jpg",
-    "2.mp4",
-    "3.jpg",
-    "4.mp4",
-    "5.jpg",
-    "6.mp4",
-    "7.jpg",
-    "8.mp4",
-    "9.jpg",
-    "10.mp4",
-    "11.jpg",
-    "12.mp4",
-    "13.jpg",
-    "14.mp4",
-    "15.jpg",
+  const tabs = [
+    "F&B",
+    "Real Estate",
+    "Marketing",
+    "Corporate Photographs",
+    "Business Setup",
   ];
-
-  const fileObjects = fileNames.map((name) => ({
-    fileName: `media/photographyImages/${name}`,
-  }));
   const para =
     "Showcasing Creativity and Craft: A Portfolio of Innovative Design and Thoughtful Solutions";
   const [isFormOpen, setIsFormOpen] = React.useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <motion.div className="  bg-white" ref={containerRef}>
       <SliderForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
@@ -114,47 +103,36 @@ const Page = () => {
         </div>
       </motion.div>
 
-      <motion.div ref={mediaRef}>
-        <div className="">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {fileObjects.map((file, index) => {
-              const fileExtension = file.fileName
-                .split("/")
-                .pop()
-                ?.split(".")
-                .pop();
+      <div className="relative">
+        <h2 className="text-3xl mt-20 lg:text-5xl font-[500] text-center ">
+          Portfolio images and videos
+        </h2>
 
-              return (
-                <motion.div key={index} className="w-full aspect-[3/4]">
-                  {fileExtension === "mp4" ? (
-                    <video
-                      muted
-                      loop
-                      autoPlay
-                      className="w-full h-full object-cover"
-                    >
-                      <source
-                        src={`https://github.com/frontendmakaidigitals/InsightVision/raw/refs/heads/master/public/${file.fileName}`}
-                        type="video/mp4"
-                      />
-                    </video>
-                  ) : fileExtension === "jpg" ||
-                    fileExtension === "jpeg" ||
-                    fileExtension === "png" ? (
-                    <img
-                      src={file.fileName}
-                      alt={file.fileName}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <p>{file.fileName}</p>
-                  )}
-                </motion.div>
-              );
-            })}
+        <div className="sticky top-0 left-0 z-10">
+          <div className="flex mt-5 justify-center items-center">
+            <ul className="flex bg-slate-100 mt-6 overflow-hidden rounded-full justify-center items-center">
+              {tabs.map((tab, idx) => (
+                <li
+                  onClick={() => setActiveIndex(idx)}
+                  key={idx}
+                  className={`cursor-pointer transition-all duration-300 px-8 py-3 ${
+                    idx !== tabs.length - 1 ? "border-r  pr-5" : "pr-8 "
+                  }   ${idx === activeIndex ? "bg-indigo-100" : ""}`}
+                >
+                  {tab}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </motion.div>
+
+        <motion.div ref={mediaRef} className=" mt-14">
+          <motion.p className="text-4xl mb-5 container">
+            {tabs[activeIndex]}
+          </motion.p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+        </motion.div>
+      </div>
 
       <div className="py-16 container">
         <div className=" ">
