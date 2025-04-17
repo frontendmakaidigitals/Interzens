@@ -29,6 +29,91 @@ const Page = () => {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const RealEstate = [
+    "Al Barari Walkthrough - Afroz 8th Draft-compressed.mov",
+    "C0077-compressed.mov",
+    "C0078-compressed.mov",
+    "C0079-compressed.mov",
+    "DSC00004.jpg",
+    "DSC00044.jpg",
+    "DSC00056.jpg",
+    "DSC00060.jpg",
+    "DSC00061.jpg",
+    "DSC00082-2.jpg",
+    "DSC00082.jpg",
+    "DSC09971.jpg",
+    "DSC09977.jpg",
+    "Damac Island 1st Draft with text-compressed.mov",
+    "Hand_Draft01-compressed.mov",
+    "IMG_8784.JPG",
+    "Javed_Leos_draft01-compressed.mov",
+    "Masaar_Rahil_Draft03-compressed.mov",
+    "Ram_Podcast_Final-compressed.mov",
+    "Rubab_D2_Draft01-compressed.mov",
+    "SALWA DECA FINAL-compressed.mov",
+    "Salwa_Arabic_draft02-compressed.mov",
+    "Salwa_CG_Final-compressed.mov",
+    "Salwa_Javed_Meraas_with new qr-compressed.mov",
+    "salwa_office_Video_Draft03-compressed.mov",
+  ];
+
+  const businessSetup = [
+    "4th Draft - Bizgrowth-compressed.mov",
+    "Bizgrowth 4th Render-compressed.mov",
+  ];
+
+  const FandB = [
+    "1.jpg",
+    " 10.mp4",
+    "11.jpg",
+    "12.mp4",
+    "13.jpg",
+    "14.mp4",
+    "15.jpg",
+    "2.mp4",
+    "3.jpg",
+    " 4.mp4",
+    " 5.jpg",
+    "6.mp4",
+    "  7.jpg",
+    " 8.mp4",
+    "9.jpg",
+  ];
+  const marketing = [
+    "IKEA CO WORKER V2-compressed.mov",
+    "starbucks misspelling-compressed.mov",
+  ];
+  const corporatePhotographs = [
+    "Slide 2.jpg",
+    "Slide 4 - Milestone Homes Office.jpg",
+    "Slide 5 - Investment Advisory Services.jpg",
+    "Slide 5 - Mortgage Approval Services.JPG",
+    "Slide 5 - Property Evaluation.JPG",
+    "Slide 5 - Property Management.JPG",
+    "Slide 5 - Real Estate Investment.jpg",
+    "Slide 5 - Short Term & Long Term Leasing.JPG",
+  ];
+
+  const RenderMedia = (MediaArr: string[], path: string) => {
+    return (
+      <div className="grid grid-cols-2">
+        {MediaArr.map((media, idx) => {
+          const extension = media.split(".").pop()?.toLowerCase();
+          if (extension === "png") {
+            return <img key={idx} src={path + media} alt={`Media ${idx}`} />;
+          } else if (extension === "mov" || extension === "mp4") {
+            return (
+              <video key={idx} muted autoPlay>
+                <source src={path + media} />
+                Your browser does not support the video tag.
+              </video>
+            );
+          }
+          return null;
+        })}
+      </div>
+    );
+  };
 
   return (
     <motion.div className="  bg-white" ref={containerRef}>
@@ -130,7 +215,7 @@ const Page = () => {
           <motion.p className="text-4xl mb-5 container">
             {tabs[activeIndex]}
           </motion.p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
+          {RenderMedia(RealEstate, "media/Photos&Vidoes/RealEstate/")}
         </motion.div>
       </div>
 
@@ -138,7 +223,7 @@ const Page = () => {
         <div className=" ">
           <div className=" p-7  w-full bg-[#3F51B5] text-slate-100 rounded-xl">
             <h2 className="text-3xl font-SplineSans font-[500]">
-              Let’s Drive Performance Together
+              Let&nbsp;s Drive Performance Together
             </h2>
             <p className="mt-3 font-Synonym font-[400] text-lg">
               If you`re ready to take your marketing to the next level and see
