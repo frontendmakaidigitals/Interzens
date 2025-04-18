@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import BreadCrumb from "../App chunks/components/BreadCrumb";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import SliderForm from "../App chunks/components/SliderForm";
@@ -10,6 +10,9 @@ const Page = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mediaRef = React.useRef<HTMLDivElement>(null);
 
+  const Skeleton = () => (
+    <div className="w-full h-full bg-slate-200 animate-pulse rounded-md" />
+  );
   React.useEffect(() => {
     const rect = document
       .getElementsByClassName("HeadNavigation")[0]
@@ -28,7 +31,13 @@ const Page = () => {
     "Showcasing Creativity and Craft: A Portfolio of Innovative Design and Thoughtful Solutions";
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+
+  const FandBRef = React.useRef<HTMLDivElement>(null);
+  const RealEstateRef = React.useRef<HTMLDivElement>(null);
+  const MarketingRef = React.useRef<HTMLDivElement>(null);
+  const CorporatePhotosRef = React.useRef<HTMLDivElement>(null);
+  const BusinessSetupRef = React.useRef<HTMLDivElement>(null);
+
   const RealEstate = [
     "Al Barari Walkthrough - Afroz 8th Draft-compressed.mov",
     "C0077-compressed.mov",
@@ -64,7 +73,7 @@ const Page = () => {
 
   const FandB = [
     "1.jpg",
-    " 10.mp4",
+    "10.mp4",
     "11.jpg",
     "12.mp4",
     "13.jpg",
@@ -72,11 +81,11 @@ const Page = () => {
     "15.jpg",
     "2.mp4",
     "3.jpg",
-    " 4.mp4",
-    " 5.jpg",
+    "4.mp4",
+    "5.jpg",
     "6.mp4",
-    "  7.jpg",
-    " 8.mp4",
+    "7.jpg",
+    "8.mp4",
     "9.jpg",
   ];
   const marketing = [
@@ -95,24 +104,97 @@ const Page = () => {
   ];
 
   const RenderMedia = (MediaArr: string[], path: string) => {
+    const [loadingStates, setLoadingStates] = useState<{
+      [key: number]: boolean;
+    }>(() => Object.fromEntries(MediaArr.map((_, idx) => [idx, true])));
+
+    const handleLoad = (idx: number) => {
+      setLoadingStates((prev) => ({
+        ...prev,
+        [idx]: false,
+      }));
+    };
+
     return (
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-3 w-full">
         {MediaArr.map((media, idx) => {
           const extension = media.split(".").pop()?.toLowerCase();
-          if (extension === "png") {
-            return <img key={idx} src={path + media} alt={`Media ${idx}`} />;
+          const isLoading = loadingStates[idx];
+          if (extension === "png" || extension === "jpg") {
+            return (
+              <div key={idx} className="h-[500px] w-full relative">
+                {!isLoading && (
+                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md" />
+                )}
+                <img
+                  className={`w-full h-full object-cover transition-opacity duration-500 ${
+                    !isLoading ? "opacity-0" : "opacity-100"
+                  }`}
+                  src={path + media}
+                  alt={`Media ${idx}`}
+                  onLoad={() => {
+                    console.log("Loaded image", idx);
+                    handleLoad(idx);
+                  }}
+                  onError={() =>
+                    console.error("Image failed to load:", path + media)
+                  }
+                />
+              </div>
+            );
           } else if (extension === "mov" || extension === "mp4") {
             return (
-              <video key={idx} muted autoPlay>
-                <source src={path + media} />
-                Your browser does not support the video tag.
-              </video>
+              <div key={idx} className="h-[500px] w-full relative">
+                {isLoading && (
+                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md" />
+                )}
+                <video
+                  key={idx}
+                  onPlaying={() => handleLoad(idx)}
+                  muted
+                  autoPlay
+                  className="object-cover w-full h-full"
+                >
+                  <source src={path + media} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             );
           }
           return null;
         })}
       </div>
     );
+  };
+  const refs = [
+    FandBRef,
+    RealEstateRef,
+    MarketingRef,
+    CorporatePhotosRef,
+    BusinessSetupRef,
+  ];
+
+  const scrollToWithEasing = (targetY: number) => {
+    const start = window.scrollY;
+    const distance = targetY - start;
+
+    animate(0, 1, {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1], // easeOutCubic
+      onUpdate: (latest) => {
+        window.scrollTo(0, start + distance * latest);
+      },
+    });
+  };
+
+  const handleTabClick = (idx: number) => {
+    setActiveIndex(idx);
+
+    const target = refs[idx]?.current;
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - 100; // Offset for header
+      scrollToWithEasing(top);
+    }
   };
 
   return (
@@ -195,14 +277,14 @@ const Page = () => {
 
         <div className="sticky top-0 left-0 z-10">
           <div className="flex mt-5 justify-center items-center">
-            <ul className="flex bg-slate-100 mt-6 overflow-hidden rounded-full justify-center items-center">
+            <ul className="flex bg-slate-100 shadow-sm border border-slate-100 mt-6 overflow-hidden rounded-full justify-center items-center">
               {tabs.map((tab, idx) => (
                 <li
-                  onClick={() => setActiveIndex(idx)}
+                  onClick={() => handleTabClick(idx)}
                   key={idx}
-                  className={`cursor-pointer transition-all duration-300 px-8 py-3 ${
+                  className={`cursor-pointer hover:bg-indigo-100 transition-all duration-300 px-8 py-3 ${
                     idx !== tabs.length - 1 ? "border-r  pr-5" : "pr-8 "
-                  }   ${idx === activeIndex ? "bg-indigo-100" : ""}`}
+                  }    `}
                 >
                   {tab}
                 </li>
@@ -212,13 +294,43 @@ const Page = () => {
         </div>
 
         <motion.div ref={mediaRef} className=" mt-14">
-          <motion.p className="text-4xl mb-5 container">
-            {tabs[activeIndex]}
-          </motion.p>
-          {RenderMedia(RealEstate, "media/Photos&Vidoes/RealEstate/")}
+          <div className="container">
+            <div ref={FandBRef} className=" mt-4 border-b pb-12">
+              <h2 className="text-xl lg:text-3xl mb-4">F&B</h2>
+              {RenderMedia(FandB, "media/PhotosVideos/F&B/")}
+            </div>
+          </div>
+          <div className="container">
+            <div ref={RealEstateRef} className=" mt-3 pt-4 border-b pb-12">
+              <h2 className="text-xl lg:text-3xl mb-4">Real Estate</h2>
+              {RenderMedia(RealEstate, "media/PhotosVideos/Real Estate/")}
+            </div>
+          </div>
+          <div className="container">
+            <div ref={MarketingRef} className=" mt-3 pt-4 border-b pb-12">
+              <h2 className="text-xl lg:text-3xl mb-4">Marketing</h2>
+              {RenderMedia(marketing, "media/PhotosVideos/Marketing/")}
+            </div>
+          </div>
+          <div className="container">
+            <div ref={CorporatePhotosRef} className=" mt-3 pt-4 border-b pb-12">
+              <h2 className="text-xl lg:text-3xl mb-4">
+                Corporate Photographs
+              </h2>
+              {RenderMedia(
+                corporatePhotographs,
+                "media/PhotosVideos/Corporate Photographs/"
+              )}
+            </div>
+          </div>
+          <div className="container">
+            <div ref={BusinessSetupRef} className="  mt-3 pt-4  border-b pb-12">
+              <h2 className="text-xl lg:text-3xl mb-4">Business Setup</h2>
+              {RenderMedia(businessSetup, "media/PhotosVideos/Business Setup/")}
+            </div>
+          </div>
         </motion.div>
       </div>
-
       <div className="py-16 container">
         <div className=" ">
           <div className=" p-7  w-full bg-[#3F51B5] text-slate-100 rounded-xl">
