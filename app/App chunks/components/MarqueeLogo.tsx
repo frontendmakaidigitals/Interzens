@@ -28,7 +28,8 @@ const reviews = [
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
-
+const repoURL =
+    "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
 const ReviewCard = ({ img }: { img: string }) => {
   return (
     <figure
@@ -41,7 +42,7 @@ const ReviewCard = ({ img }: { img: string }) => {
         } rounded-xl border`
       )}
     >
-      <img className=" w-full h-full object-contain" src={img} />
+      <img className=" w-full h-full object-contain" src={repoURL+img} />
     </figure>
   );
 };

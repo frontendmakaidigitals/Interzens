@@ -106,7 +106,7 @@ const TechStack = () => {
               >
                 <div className="w-full h-full bg-purple-100 relative p-1 lg:p-3 rounded-xl z-10">
                   <img
-                    src={repoURL + src}
+                    src={src.includes('.png') ? repoURL + src : src}
                     className={`w-full bg-purple-100 h-full object-contain`}
                   />
                 </div>
@@ -151,7 +151,7 @@ const TechStack = () => {
               >
                 <div className="w-full h-full bg-purple-100 relative p-1 lg:p-3 rounded-xl z-10">
                   <img
-                    src={repoURL + src}
+                   src={src.includes('.png') ? repoURL + src : src}
                     className="w-full bg-purple-100 h-full object-contain"
                   />
                 </div>
