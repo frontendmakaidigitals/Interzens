@@ -111,7 +111,7 @@ const Page = () => {
     const repoURL =
       "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
     return (
-      <div className="grid grid-cols-3 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
         {MediaArr.map((media, idx) => {
           const extension = media.split(".").pop()?.toLowerCase();
           const isLoading = loadingStates[idx];
@@ -259,14 +259,14 @@ const Page = () => {
           Portfolio images and videos
         </h2>
 
-        <div className="sticky top-0 left-0 z-10">
-          <div className="flex mt-5 justify-center items-center">
-            <ul className="flex bg-slate-100 shadow-sm border border-slate-100 mt-6 overflow-hidden rounded-full justify-center items-center">
+        <div className="lg:sticky container top-0 left-0 z-10">
+          <div className="flex  mt-5 justify-center items-center">
+            <ul className=" flex bg-slate-100 text-nowrap whitespace-nowrap shadow-sm border border-slate-100 mt-6 overflow-scroll rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
               {tabs.map((tab, idx) => (
                 <li
                   onClick={() => handleTabClick(idx)}
                   key={idx}
-                  className={`cursor-pointer hover:bg-indigo-100 transition-all duration-300 px-8 py-3 ${
+                  className={`cursor-pointer  hover:bg-indigo-100 transition-all duration-300 px-8 py-3 ${
                     idx !== tabs.length - 1 ? "border-r  pr-5" : "pr-8 "
                   }    `}
                 >
