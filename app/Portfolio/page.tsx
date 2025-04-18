@@ -118,19 +118,10 @@ const Page = () => {
           if (extension === "png" || extension === "jpg") {
             return (
               <div key={idx} className="h-[500px] w-full relative">
-                {!isLoading && (
-                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md" />
-                )}
                 <img
-                  className={`w-full h-full object-cover transition-opacity duration-500 ${
-                    !isLoading ? "opacity-0" : "opacity-100"
-                  }`}
+                  className={`w-full h-full object-cover transition-opacity duration-500 `}
                   src={path + media}
                   alt={`Media ${idx}`}
-                  onLoad={() => {
-                    console.log("Loaded image", idx);
-                    handleLoad(idx);
-                  }}
                 />
               </div>
             );
