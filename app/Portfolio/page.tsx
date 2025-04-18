@@ -26,7 +26,7 @@ const Page = () => {
   const para =
     "Showcasing Creativity and Craft: A Portfolio of Innovative Design and Thoughtful Solutions";
   const [isFormOpen, setIsFormOpen] = React.useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  
 
   const FandBRef = React.useRef<HTMLDivElement>(null);
   const RealEstateRef = React.useRef<HTMLDivElement>(null);
