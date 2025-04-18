@@ -9,10 +9,6 @@ const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mediaRef = React.useRef<HTMLDivElement>(null);
-
-  const Skeleton = () => (
-    <div className="w-full h-full bg-slate-200 animate-pulse rounded-md" />
-  );
   React.useEffect(() => {
     const rect = document
       .getElementsByClassName("HeadNavigation")[0]
