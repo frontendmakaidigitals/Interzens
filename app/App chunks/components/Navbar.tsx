@@ -12,7 +12,6 @@ const menu = [
   { title: "about", link: "/About" },
   { title: "services", link: "/service" },
   { title: "Portfolio", link: "/Portfolio" },
-  { title: "Blogs", link: "/Blogs" },
 ];
 const NavBar = () => {
   const path = usePathname();

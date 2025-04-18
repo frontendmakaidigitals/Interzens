@@ -39,6 +39,7 @@ const MobileMenu = ({}) => {
     },
     { title: "Blog", link: "/" },
     { title: "Contact", link: "/contact" },
+    { title: "Portfolio", link: "/Portfolio" },
   ];
   const [height, setHeight] = useState<number | undefined>(undefined);
   const lenis = useLenis();
