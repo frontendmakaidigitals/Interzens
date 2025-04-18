@@ -184,7 +184,7 @@ const Page = () => {
   };
 
   const handleTabClick = (idx: number) => {
-    setActiveIndex(idx);
+    
 
     const target = refs[idx]?.current;
     if (target) {
