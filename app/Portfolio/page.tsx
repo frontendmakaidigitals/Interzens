@@ -261,7 +261,7 @@ const Page = () => {
 
         <div className="lg:sticky container top-0 left-0 z-10">
           <div className="flex  mt-5 justify-center items-center">
-            <ul className=" flex bg-slate-100 text-nowrap whitespace-nowrap shadow-sm border border-slate-100 mt-6 overflow-scroll rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
+            <ul className=" flex bg-slate-100 text-nowrap whitespace-nowrap shadow-sm border border-slate-100 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
               {tabs.map((tab, idx) => (
                 <li
                   onClick={() => handleTabClick(idx)}
