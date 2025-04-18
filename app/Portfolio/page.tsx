@@ -127,7 +127,7 @@ const Page = () => {
                   className={`w-full h-full object-cover transition-opacity duration-500 ${
                     !isLoading ? "opacity-0" : "opacity-100"
                   }`}
-                  src={repoURL + path + media}
+                  src={ path + media}
                   alt={`Media ${idx}`}
                   onLoad={() => {
                     console.log("Loaded image", idx);
