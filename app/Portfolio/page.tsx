@@ -26,7 +26,6 @@ const Page = () => {
   const para =
     "Showcasing Creativity and Craft: A Portfolio of Innovative Design and Thoughtful Solutions";
   const [isFormOpen, setIsFormOpen] = React.useState(false);
-  
 
   const FandBRef = React.useRef<HTMLDivElement>(null);
   const RealEstateRef = React.useRef<HTMLDivElement>(null);
@@ -44,7 +43,6 @@ const Page = () => {
     "DSC00056.jpg",
     "DSC00060.jpg",
     "DSC00061.jpg",
-    "DSC00082-2.jpg",
     "DSC00082.jpg",
     "DSC09971.jpg",
     "DSC09977.jpg",
@@ -92,11 +90,11 @@ const Page = () => {
     "Slide 2.jpg",
     "Slide 4 - Milestone Homes Office.jpg",
     "Slide 5 - Investment Advisory Services.jpg",
-    "Slide 5 - Mortgage Approval Services.JPG",
-    "Slide 5 - Property Evaluation.JPG",
-    "Slide 5 - Property Management.JPG",
+    "Slide 5 - Mortgage Approval Services.jpg",
+    "Slide 5 - Property Evaluation.jpg",
+    "Slide 5 - Property Management.jpg",
     "Slide 5 - Real Estate Investment.jpg",
-    "Slide 5 - Short Term & Long Term Leasing.JPG",
+    "Slide 5 - Short Term & Long Term Leasing.jpg",
   ];
 
   const RenderMedia = (MediaArr: string[], path: string) => {
@@ -111,7 +109,7 @@ const Page = () => {
       }));
     };
     const repoURL =
-    "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
+      "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
     return (
       <div className="grid grid-cols-3 w-full">
         {MediaArr.map((media, idx) => {
@@ -127,7 +125,7 @@ const Page = () => {
                   className={`w-full h-full object-cover transition-opacity duration-500 ${
                     !isLoading ? "opacity-0" : "opacity-100"
                   }`}
-                  src={ path + media}
+                  src={path + media}
                   alt={`Media ${idx}`}
                   onLoad={() => {
                     console.log("Loaded image", idx);
@@ -140,7 +138,10 @@ const Page = () => {
             return (
               <div key={idx} className="h-[500px] w-full relative">
                 {isLoading && (
-                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md" />
+                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md flex justify-center items-center">
+                    {/* Spinner */}
+                    <div className="border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
+                  </div>
                 )}
                 <video
                   key={idx}
@@ -182,8 +183,6 @@ const Page = () => {
   };
 
   const handleTabClick = (idx: number) => {
-    
-
     const target = refs[idx]?.current;
     if (target) {
       const top = target.getBoundingClientRect().top + window.scrollY - 100; // Offset for header
