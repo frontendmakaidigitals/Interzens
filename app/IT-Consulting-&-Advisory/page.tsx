@@ -145,7 +145,7 @@ const Page = () => {
             "Ensure adherence to regulations like GDPR, HIPAA, and ISO standards.",
         },
       ],
-      img: "services/Cyber&ITSecurity.png",
+      img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/services/Cyber&ITSecurity.png",
     },
     {
       category: "IT Infrastructure Optimization",

@@ -123,7 +123,7 @@ const Page = () => {
         "Event Sponsorship: A brand sponsors a high-profile event, such as a major sporting event, awards show, or reality TV program.",
         "Program Sponsorship: A brand can sponsor a particular TV program, receiving a branded segment or mention within the show.",
       ],
-      img: "services/TV Sponsorship.png",
+      img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/services/TV Sponsorship.png",
     },
   ];
   const radioAdvertising = [

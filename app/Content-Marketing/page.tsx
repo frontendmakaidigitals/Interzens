@@ -114,7 +114,7 @@ const Page = () => {
               "Internal & External Linking: Structuring content to boost authority and drive organic traffic.",
               "Content Refreshing: Regularly updating old blogs to maintain relevance and search rankings.",
             ],
-            img: "services/SEO.png",
+            img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/services/SEO.png",
           },
         ],
         topicIdeation:
@@ -154,7 +154,7 @@ const Page = () => {
               "Filming & Editing: Professional shooting, audio recording, and post-production editing.",
               "Animation & Motion Graphics: Dynamic visual effects and animations to elevate your videos.",
             ],
-            img: "services/video_Production.png",
+            img: "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/services/video_Production.png",
           },
         ],
         videoFormats: [

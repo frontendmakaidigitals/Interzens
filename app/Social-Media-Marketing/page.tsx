@@ -115,7 +115,7 @@ const Page = () => {
             "Detailed tracking and reports to optimize your campaigns and maximize ROI.",
         },
       ],
-      img: "services/lead.jpg",
+      img: "services/Lead.jpg",
     },
     {
       category: "Influencer Marketing",
