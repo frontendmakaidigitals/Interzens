@@ -34,7 +34,7 @@ const NavBar = () => {
       >
         <Logo
          source={
-          path !== "/Blogs" && path !== "/Blog" ? "/Logo.png" : "/Logo.png"
+          path !== "/Blogs" && path !== "/Blog" ? "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/Logo.png" : "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/Logo.png"
         }
           className="w-[110px] lg:!w-[230px]"
         />

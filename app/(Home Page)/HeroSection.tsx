@@ -423,7 +423,8 @@ const Section2 = ({
       instanceRef.current.update();
     }
   }, [containerHeight]);
-
+  const repoURL =
+  "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
   return (
     <motion.section
       style={{ scale, rotate }}
@@ -503,7 +504,7 @@ const Section2 = ({
             {services.map((service, idx) => (
               <div key={idx} className={` keen-slider__slide h-full`}>
                 <motion.img
-                  src={service.img}
+                  src={repoURL + service.img}
                   key={hoverId}
                   transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
                   className="w-full h-full object-contain"

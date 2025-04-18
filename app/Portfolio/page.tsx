@@ -110,7 +110,8 @@ const Page = () => {
         [idx]: false,
       }));
     };
-
+    const repoURL =
+    "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
     return (
       <div className="grid grid-cols-3 w-full">
         {MediaArr.map((media, idx) => {
@@ -126,15 +127,12 @@ const Page = () => {
                   className={`w-full h-full object-cover transition-opacity duration-500 ${
                     !isLoading ? "opacity-0" : "opacity-100"
                   }`}
-                  src={path + media}
+                  src={repoURL + path + media}
                   alt={`Media ${idx}`}
                   onLoad={() => {
                     console.log("Loaded image", idx);
                     handleLoad(idx);
                   }}
-                  onError={() =>
-                    console.error("Image failed to load:", path + media)
-                  }
                 />
               </div>
             );
@@ -151,7 +149,7 @@ const Page = () => {
                   autoPlay
                   className="object-cover w-full h-full"
                 >
-                  <source src={path + media} />
+                  <source src={repoURL + path + media} />
                   Your browser does not support the video tag.
                 </video>
               </div>

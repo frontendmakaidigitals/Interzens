@@ -112,7 +112,8 @@ const AboutUs = () => {
       setContainerRECT(container?.current.getBoundingClientRect());
     }
   }, [container]);
-
+  const repoURL =
+  "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
   return (
     <div ref={container} className="w-full overflow-hidden  relative py-32">
       <div className="absolute -z-10 w-full h-full top-1/2 -translate-y-1/2 left-0">
@@ -212,7 +213,7 @@ const AboutUs = () => {
                 className="w-full h-full absolute z-[10] top-0 left-0 bg-purple-100"
               />
               <motion.img
-                src="/AboutUs.png"
+                src={repoURL+'AboutUs.png'}
                 alt="Image"
                 className="w-full h-full object-cover"
                 style={{ translateY: springY, scale: 1.1 }}

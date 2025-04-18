@@ -33,7 +33,7 @@ const TechStack = () => {
     if (typeof window !== undefined) {
       setViewportWidth(window.innerWidth);
     }
-  }, []);      
+  }, []);
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true });
   const [id, setId] = React.useState<number | null>(null);
@@ -56,7 +56,8 @@ const TechStack = () => {
   // Determine how many images to show based on the viewportWidth
   const image1ToShow = viewportWidth < 450 ? image1.slice(0, 6) : image1;
   const image2ToShow = viewportWidth < 450 ? image2.slice(0, 5) : image2;
-
+  const repoURL =
+    "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
   return (
     <div ref={ref} className="w-full overflow-hidden py-16 bg-black ">
       <div className="">
@@ -105,7 +106,7 @@ const TechStack = () => {
               >
                 <div className="w-full h-full bg-purple-100 relative p-1 lg:p-3 rounded-xl z-10">
                   <img
-                    src={src}
+                    src={repoURL + src}
                     className={`w-full bg-purple-100 h-full object-contain`}
                   />
                 </div>
@@ -150,7 +151,7 @@ const TechStack = () => {
               >
                 <div className="w-full h-full bg-purple-100 relative p-1 lg:p-3 rounded-xl z-10">
                   <img
-                    src={src}
+                    src={repoURL + src}
                     className="w-full bg-purple-100 h-full object-contain"
                   />
                 </div>
