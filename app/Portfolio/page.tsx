@@ -34,18 +34,16 @@ const Page = () => {
   const BusinessSetupRef = React.useRef<HTMLDivElement>(null);
 
   const RealEstate = [
-    "Al Barari Walkthrough - Afroz 8th Draft-compressed.mov",
+    "1.jpg",
+    "10.mp4",
+    "7.jpg",
     "C0077-compressed.mov",
-    "C0078-compressed.mov",
-    "C0079-compressed.mov",
     "DSC00004.jpg",
     "DSC00044.jpg",
     "DSC00056.jpg",
     "DSC00060.jpg",
-    "DSC00061.jpg",
     "DSC00082.jpg",
     "DSC09971.jpg",
-    "DSC09977.jpg",
     "Damac Island 1st Draft with text-compressed.mov",
     "Hand_Draft01-compressed.mov",
     "IMG_8784.JPG",
@@ -66,8 +64,6 @@ const Page = () => {
   ];
 
   const FandB = [
-    "1.jpg",
-    "10.mp4",
     "11.jpg",
     "12.mp4",
     "13.jpg",
@@ -78,7 +74,6 @@ const Page = () => {
     "4.mp4",
     "5.jpg",
     "6.mp4",
-    "7.jpg",
     "8.mp4",
     "9.jpg",
   ];
@@ -122,6 +117,7 @@ const Page = () => {
                   className={`w-full h-full object-cover transition-opacity duration-500 `}
                   src={path + media}
                   alt={`Media ${idx}`}
+                  loading="lazy"
                 />
               </div>
             );
