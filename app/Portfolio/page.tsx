@@ -1,10 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import { motion, animate } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, animate, AnimatePresence } from "framer-motion";
 import BreadCrumb from "../App chunks/components/BreadCrumb";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import SliderForm from "../App chunks/components/SliderForm";
-import { ArrowUpRight } from "@phosphor-icons/react";
+import {
+  ArrowUpRight,
+  Pause,
+  Play,
+  ArrowsOutSimple,
+  X,
+} from "@phosphor-icons/react";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -115,31 +121,150 @@ const Page = () => {
               <div key={idx} className="h-[500px] w-full relative">
                 <img
                   className={`w-full h-full object-cover transition-opacity duration-500 `}
-                  src={path + media}
                   alt={`Media ${idx}`}
                   loading="lazy"
+                  src={path + media}
                 />
               </div>
             );
           } else if (extension === "mov" || extension === "mp4") {
+            const videoRef = useRef<HTMLVideoElement>(null);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [isVideoPaused, setIsVideoPaused] = useState(true);
+            const [isLoading, setIsLoading] = useState<boolean | null>(null);
+            const [isFullScreen, setIsFullScreen] = useState(false);
+
+            const handleToggle = () => {
+              const video = videoRef.current;
+
+              if (!isPlaying) {
+                setIsPlaying(true); // first time -> show video
+              } else if (video) {
+                if (video.paused) {
+                  video.play();
+                } else {
+                  video.pause();
+                }
+              }
+            };
+
+            useEffect(() => {
+              const video = videoRef.current;
+              if (!video) return;
+
+              const onPlay = () => {
+                setIsVideoPaused(false);
+                console.log("Playing");
+              };
+              const onPause = () => {
+                setIsVideoPaused(true);
+                console.log("Paused");
+              };
+
+              video.addEventListener("play", onPlay);
+              video.addEventListener("pause", onPause);
+
+              return () => {
+                video.removeEventListener("play", onPlay);
+                video.removeEventListener("pause", onPause);
+              };
+            }, [isPlaying]); // only when video is mounted
+
             return (
-              <div key={idx} className="h-[500px] w-full relative">
-                {isLoading && (
-                  <div className="absolute w-full h-full inset-0 bg-slate-950/10 animate-pulse z-10 rounded-md flex justify-center items-center">
-                    {/* Spinner */}
-                    <div className="border-t-4 border-blue-500 border-solid rounded-full w-16 h-16 animate-spin"></div>
-                  </div>
+              <div key={idx} className="h-[500px] w-full relative group">
+                {isPlaying ? (
+                  <>
+                    {isLoading == null && (
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
+                      </div>
+                    )}
+                    {!isLoading && (
+                      <button
+                        onClick={() => setIsFullScreen(true)}
+                        className="absolute z-10 top-5 right-5 size-10 rounded-full backdrop-blur-md bg-white flex justify-center items-center"
+                      >
+                        <ArrowsOutSimple weight="fill" className="text-xl" />
+                      </button>
+                    )}
+                    <motion.div
+                      animate={{
+                        opacity: 1,
+                        scale: isFullScreen ? 1 : 1,
+                        width: isFullScreen ? "100vw" : "auto",
+                        height: isFullScreen ? "100vh" : "auto",
+                        padding: isFullScreen ? "1.25rem" : "0rem", // p-5
+                        backgroundColor: isFullScreen
+                          ? "rgba(3,7,18,0.3)"
+                          : "transparent", // gray-950/30
+                        position: isFullScreen ? "fixed" : "relative",
+                        top: isFullScreen ? 0 : "auto",
+                        left: isFullScreen ? 0 : "auto",
+                        zIndex: isFullScreen ? 9999999999 : "auto",
+                        justifyContent: isFullScreen ? "center" : "flex-start",
+                        alignItems: isFullScreen ? "center" : "flex-start",
+                      }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      className="flex"
+                    >
+                      {isFullScreen && (
+                        <button
+                          onClick={() => setIsFullScreen(false)}
+                          className="size-10 z-10 hover:bg-red-300 hover:text-red-800 bg-slate-50 rounded-full absolute top-5 right-5 flex justify-center items-center "
+                        >
+                          <X className="text-xl" />
+                        </button>
+                      )}
+                      <video
+                        ref={videoRef}
+                        style={{ opacity: isLoading ? 0 : 1 }}
+                        onPlaying={() => setIsLoading(false)}
+                        controls={false}
+                        autoPlay
+                        muted
+                        className={`${
+                          isFullScreen ? "object-contain" : "object-cover"
+                        } peer w-full h-full rounded-md `}
+                      >
+                        <source src={repoURL + path + media} />
+                        Your browser does not support the video tag.
+                      </video>
+                    </motion.div>
+                  </>
+                ) : (
+                  <img
+                    alt={media}
+                    className="w-full h-full object-cover rounded-md"
+                    src="https://images.unsplash.com/photo-1707938186244-b75b89aede40?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  />
                 )}
-                <video
-                  key={idx}
-                  onPlaying={() => handleLoad(idx)}
-                  muted
-                  autoPlay
-                  className="object-cover w-full h-full"
-                >
-                  <source src={repoURL + path + media} />
-                  Your browser does not support the video tag.
-                </video>
+
+                <AnimatePresence>
+                  {!isLoading && (
+                    <div
+                      key="playpause"
+                      className={`${
+                        isPlaying ? "hover:bg-slate-950/10" : ""
+                      } absolute inset-0 w-full group h-full flex justify-center items-center`}
+                    >
+                      <button
+                        onClick={handleToggle}
+                        className={`cursor-pointer rounded-full backdrop-blur-md bg-white/60 size-[60px] ${
+                          isPlaying ? "group-hover:flex hidden" : "flex"
+                        } justify-center items-center group-hover:opacity-100`}
+                      >
+                        {isPlaying && !isVideoPaused ? (
+                          <Pause
+                            weight="fill"
+                            className="text-3xl text-white"
+                          />
+                        ) : (
+                          <Play weight="fill" className="text-3xl text-white" />
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           }
