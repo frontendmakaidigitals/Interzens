@@ -282,10 +282,10 @@ export default Page;
 
 const VideoPlayer = ({
   src,
-  placeholder,
+  thumbnail,
 }: {
   src: string;
-  placeholder: string;
+  thumbnail: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -348,7 +348,9 @@ const VideoPlayer = ({
         </>
       ) : (
         <img
-          src={placeholder}
+          src={`media/PhotosVideos/Thumbnails/${
+            thumbnail.split(".")[0] + ".jpg"
+          }`}
           alt="Video thumbnail"
           className="w-full h-full object-cover"
         />
@@ -381,10 +383,33 @@ const VideoPlayer = ({
   );
 };
 const RenderMedia = (MediaArr: string[], path: string) => {
+  const thumbnails = [
+    "12.jpg",
+    "14.jpg",
+    "2.jpg",
+    "4.jpg",
+    "4th Draft - Bizgrowth-compressed.jpg",
+    "6.jpg",
+    "8.jpg",
+    "Al-Barari-Walkthrought---afroz-8th-Draft.jpg",
+    "Bizgrowth 4th Render-compressed.jpg",
+    "Damac Island 1st Draft with text-compressed.jpg",
+    "Hand_Draft01-compressed.jpg",
+    "IKEA CO WORKER V2-compressed.jpg",
+    "Javed_Leos_draft01-compressed.jpg",
+    "Masaar_Rahil_Draft03-compressed.jpg",
+    "Ram_Podcast_Final-compressed.jpg",
+    "Rubab_D2_Draft01-compressed.jpg",
+    "SALWA DECA FINAL-compressed.jpg",
+    "Salwa_Arabic_draft02-compressed.jpg",
+    "Salwa_CG_Final-compressed.jpg",
+    "Salwa_Javed_Meraas_with new qr-compressed.jpg",
+    "salwa_office_Video_Draft03-compressed.jpg",
+    "starbucks misspelling-compressed.jpg",
+  ];
+  console.log(thumbnails.length)
   const repoURL =
     "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
-  const placeholder =
-    "https://images.unsplash.com/photo-1707938186244-b75b89aede40?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3";
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
@@ -403,11 +428,17 @@ const RenderMedia = (MediaArr: string[], path: string) => {
             </div>
           );
         } else if (extension === "mov" || extension === "mp4") {
+          const mediaBase = media.split(".")[0];
+          const thumbnailsBase = thumbnails.map((name) => name.split(".")[0]);
           return (
             <VideoPlayer
               key={idx}
               src={repoURL + path + media}
-              placeholder={placeholder}
+              thumbnail={
+                thumbnailsBase.includes(mediaBase)
+                  ? mediaBase
+                  : mediaBase + ".jpg"
+              }
             />
           );
         }
