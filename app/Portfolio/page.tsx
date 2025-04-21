@@ -4,12 +4,7 @@ import { motion, animate, AnimatePresence } from "framer-motion";
 import BreadCrumb from "../App chunks/components/BreadCrumb";
 import { BackgroundGradientAnimation } from "../App chunks/components/HeroGradient";
 import SliderForm from "../App chunks/components/SliderForm";
-import {
-  ArrowUpRight,
-  Pause,
-  Play,
-
-} from "@phosphor-icons/react";
+import { ArrowUpRight, Pause, Play } from "@phosphor-icons/react";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -97,141 +92,6 @@ const Page = () => {
     "Slide 5 - Short Term & Long Term Leasing.jpg",
   ];
 
-  const RenderMedia = (MediaArr: string[], path: string) => {
- 
- 
-    const repoURL =
-      "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
-        {MediaArr.map((media, idx) => {
-          const extension = media.split(".").pop()?.toLowerCase();
-     
-          if (extension === "png" || extension === "jpg") {
-            return (
-              <div key={idx} className="h-[500px] w-full relative">
-                <img
-                  className={`w-full h-full object-cover transition-opacity duration-500 `}
-                  alt={`Media ${idx}`}
-                  loading="lazy"
-                  src={path + media}
-                />
-              </div>
-            );
-          } else if (extension === "mov" || extension === "mp4") {
-            const videoRef = useRef<HTMLVideoElement>(null);
-            const [isPlaying, setIsPlaying] = useState(false);
-            const [isVideoPaused, setIsVideoPaused] = useState(true);
-            const [isLoading, setIsLoading] = useState<boolean | null>(null);
-            const [isFullScreen, setIsFullScreen] = useState(false);
-
-            const handleToggle = () => {
-              const video = videoRef.current;
-
-              if (!isPlaying) {
-                setIsPlaying(true); // first time -> show video
-              } else if (video) {
-                if (video.paused) {
-                  video.play();
-                } else {
-                  video.pause();
-                }
-              }
-            };
-
-            useEffect(() => {
-              const video = videoRef.current;
-              if (!video) return;
-
-              const onPlay = () => {
-                setIsVideoPaused(false);
-                console.log("Playing");
-              };
-              const onPause = () => {
-                setIsVideoPaused(true);
-                console.log("Paused");
-              };
-
-              video.addEventListener("play", onPlay);
-              video.addEventListener("pause", onPause);
-
-              return () => {
-                video.removeEventListener("play", onPlay);
-                video.removeEventListener("pause", onPause);
-              };
-            }, [isPlaying]); // only when video is mounted
-
-            return (
-              <div key={idx} className="h-[500px] w-full relative group">
-                {isPlaying ? (
-                  <>
-                    {isLoading == null && (
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
-                      </div>
-                    )}
-                    <motion.div
-                      className="flex"
-                    >
-                     
-                      <video
-                        ref={videoRef}
-                        style={{ opacity: isLoading ? 0 : 1 }}
-                        onPlaying={() => setIsLoading(false)}
-                        controls={false}
-                        autoPlay
-                        muted
-                        className={`${
-                          isFullScreen ? "object-contain" : "object-cover"
-                        } peer w-full h-full rounded-md `}
-                      >
-                        <source src={repoURL + path + media} />
-                        Your browser does not support the video tag.
-                      </video>
-                    </motion.div>
-                  </>
-                ) : (
-                  <img
-                    alt={media}
-                    className="w-full h-full object-cover rounded-md"
-                    src="https://images.unsplash.com/photo-1707938186244-b75b89aede40?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  />
-                )}
-
-                <AnimatePresence>
-                  {!isLoading && (
-                    <div
-                      key="playpause"
-                      className={`${
-                        isPlaying ? "hover:bg-slate-950/10" : ""
-                      } absolute inset-0 w-full group h-full flex justify-center items-center`}
-                    >
-                      <button
-                        onClick={handleToggle}
-                        className={`cursor-pointer rounded-full backdrop-blur-md bg-white/60 size-[60px] ${
-                          isPlaying && !isVideoPaused ? "group-hover:flex hidden" : "flex"
-                        } justify-center items-center group-hover:opacity-100`}
-                      >
-                        {isPlaying && !isVideoPaused ? (
-                          <Pause
-                            weight="fill"
-                            className="text-3xl text-white"
-                          />
-                        ) : (
-                          <Play weight="fill" className="text-3xl text-white" />
-                        )}
-                      </button>
-                    </div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          }
-          return null;
-        })}
-      </div>
-    );
-  };
   const refs = [
     FandBRef,
     RealEstateRef,
@@ -419,3 +279,140 @@ const Page = () => {
 };
 
 export default Page;
+
+const VideoPlayer = ({
+  src,
+  placeholder,
+}: {
+  src: string;
+  placeholder: string;
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isVideoPaused, setIsVideoPaused] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean | null>(null);
+
+  const handleToggle = () => {
+    const video = videoRef.current;
+
+    if (!isPlaying) {
+      setIsPlaying(true); // Show video
+    } else if (video) {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+  };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onPlay = () => setIsVideoPaused(false);
+    const onPause = () => setIsVideoPaused(true);
+
+    video.addEventListener("play", onPlay);
+    video.addEventListener("pause", onPause);
+
+    return () => {
+      video.removeEventListener("play", onPlay);
+      video.removeEventListener("pause", onPause);
+    };
+  }, [isPlaying]);
+
+  return (
+    <div className="h-[500px] w-full relative group rounded-md overflow-hidden">
+      {isPlaying ? (
+        <>
+          {isLoading == null && (
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
+            </div>
+          )}
+          <motion.div className="flex">
+            <video
+              ref={videoRef}
+              onPlaying={() => setIsLoading(false)}
+              style={{ opacity: isLoading ? 0 : 1 }}
+              autoPlay
+              muted
+              controls={false}
+              className="w-full h-full object-cover"
+            >
+              <source src={src} />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
+        </>
+      ) : (
+        <img
+          src={placeholder}
+          alt="Video thumbnail"
+          className="w-full h-full object-cover"
+        />
+      )}
+
+      <AnimatePresence>
+        {!isLoading && (
+          <div
+            key="playpause"
+            className={`${
+              isPlaying ? "hover:bg-slate-950/10" : ""
+            } absolute inset-0 w-full group h-full flex justify-center items-center`}
+          >
+            <button
+              onClick={handleToggle}
+              className={`cursor-pointer rounded-full backdrop-blur-md bg-white/60 size-[60px] ${
+                isPlaying && !isVideoPaused ? "group-hover:flex hidden" : "flex"
+              } justify-center items-center group-hover:opacity-100`}
+            >
+              {isPlaying && !isVideoPaused ? (
+                <Pause weight="fill" className="text-3xl text-white" />
+              ) : (
+                <Play weight="fill" className="text-3xl text-white" />
+              )}
+            </button>
+          </div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+const RenderMedia = (MediaArr: string[], path: string) => {
+  const repoURL =
+    "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
+  const placeholder =
+    "https://images.unsplash.com/photo-1707938186244-b75b89aede40?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3";
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
+      {MediaArr.map((media, idx) => {
+        const extension = media.split(".").pop()?.toLowerCase();
+
+        if (extension === "png" || extension === "jpg") {
+          return (
+            <div key={idx} className="h-[500px] w-full relative">
+              <img
+                className="w-full h-full object-cover transition-opacity duration-500"
+                alt={`Media ${idx}`}
+                loading="lazy"
+                src={path + media}
+              />
+            </div>
+          );
+        } else if (extension === "mov" || extension === "mp4") {
+          return (
+            <VideoPlayer
+              key={idx}
+              src={repoURL + path + media}
+              placeholder={placeholder}
+            />
+          );
+        }
+        return null;
+      })}
+    </div>
+  );
+};
