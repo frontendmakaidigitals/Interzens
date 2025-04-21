@@ -8,8 +8,7 @@ import {
   ArrowUpRight,
   Pause,
   Play,
-  ArrowsOutSimple,
-  X,
+
 } from "@phosphor-icons/react";
 const Page = () => {
   const [height, setHeight] = React.useState(0);
