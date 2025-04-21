@@ -99,23 +99,15 @@ const Page = () => {
   ];
 
   const RenderMedia = (MediaArr: string[], path: string) => {
-    const [loadingStates, setLoadingStates] = useState<{
-      [key: number]: boolean;
-    }>(() => Object.fromEntries(MediaArr.map((_, idx) => [idx, true])));
-
-    const handleLoad = (idx: number) => {
-      setLoadingStates((prev) => ({
-        ...prev,
-        [idx]: false,
-      }));
-    };
+ 
+ 
     const repoURL =
       "https://media.githubusercontent.com/media/frontendmakaidigitals/Interzens/refs/heads/main/public/";
     return (
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 w-full">
         {MediaArr.map((media, idx) => {
           const extension = media.split(".").pop()?.toLowerCase();
-          const isLoading = loadingStates[idx];
+     
           if (extension === "png" || extension === "jpg") {
             return (
               <div key={idx} className="h-[500px] w-full relative">
@@ -179,42 +171,10 @@ const Page = () => {
                         <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
                       </div>
                     )}
-                    {!isLoading && (
-                      <button
-                        onClick={() => setIsFullScreen(true)}
-                        className="absolute z-10 top-5 right-5 size-10 rounded-full backdrop-blur-md bg-white flex justify-center items-center"
-                      >
-                        <ArrowsOutSimple weight="fill" className="text-xl" />
-                      </button>
-                    )}
                     <motion.div
-                      animate={{
-                        opacity: 1,
-                        scale: isFullScreen ? 1 : 1,
-                        width: isFullScreen ? "100vw" : "auto",
-                        height: isFullScreen ? "100vh" : "auto",
-                        padding: isFullScreen ? "1.25rem" : "0rem", // p-5
-                        backgroundColor: isFullScreen
-                          ? "rgba(3,7,18,0.3)"
-                          : "transparent", // gray-950/30
-                        position: isFullScreen ? "fixed" : "relative",
-                        top: isFullScreen ? 0 : "auto",
-                        left: isFullScreen ? 0 : "auto",
-                        zIndex: isFullScreen ? 9999999999 : "auto",
-                        justifyContent: isFullScreen ? "center" : "flex-start",
-                        alignItems: isFullScreen ? "center" : "flex-start",
-                      }}
-                      exit={{ opacity: 0, scale: 0.8 }}
                       className="flex"
                     >
-                      {isFullScreen && (
-                        <button
-                          onClick={() => setIsFullScreen(false)}
-                          className="size-10 z-10 hover:bg-red-300 hover:text-red-800 bg-slate-50 rounded-full absolute top-5 right-5 flex justify-center items-center "
-                        >
-                          <X className="text-xl" />
-                        </button>
-                      )}
+                     
                       <video
                         ref={videoRef}
                         style={{ opacity: isLoading ? 0 : 1 }}
@@ -250,7 +210,7 @@ const Page = () => {
                       <button
                         onClick={handleToggle}
                         className={`cursor-pointer rounded-full backdrop-blur-md bg-white/60 size-[60px] ${
-                          isPlaying ? "group-hover:flex hidden" : "flex"
+                          isPlaying && !isVideoPaused ? "group-hover:flex hidden" : "flex"
                         } justify-center items-center group-hover:opacity-100`}
                       >
                         {isPlaying && !isVideoPaused ? (
@@ -380,7 +340,7 @@ const Page = () => {
           Portfolio images and videos
         </h2>
 
-        <div className="lg:sticky container top-0 left-0 z-10">
+        <div className="lg:sticky container top-0 left-0 z-50">
           <div className="flex  mt-5 justify-center items-center">
             <ul className=" flex bg-slate-100 text-nowrap whitespace-nowrap shadow-sm border border-slate-100 mt-6 overflow-auto rounded-lg lg:rounded-full justify-start lg:justify-center items-center">
               {tabs.map((tab, idx) => (
