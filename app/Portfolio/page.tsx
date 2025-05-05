@@ -37,7 +37,6 @@ const Page = () => {
     "1.jpg",
     "10.mp4",
     "7.jpg",
-    "C0077-compressed.mov",
     "DSC00004.jpg",
     "DSC00044.jpg",
     "DSC00056.jpg",
